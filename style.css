@@ -242,7 +242,17 @@ p { margin: 0 0 1em; }
   padding: 6px 14px;
   font-size: 14px;
   font-weight: 500;
-  margin: 0 0 24px;
+  margin: 0 8px 24px 0;
+}
+.venue-badge--alt {
+  --alt-accent: #8a4b2b;
+  background: color-mix(in srgb, var(--alt-accent) 10%, transparent);
+  color: var(--alt-accent);
+  border-color: color-mix(in srgb, var(--alt-accent) 22%, transparent);
+}
+:root[data-theme="dark"] .venue-badge--alt,
+:root:not([data-theme="light"]) .venue-badge--alt {
+  --alt-accent: #eebf9d;
 }
 .hero h1 {
   font-size: clamp(2.1rem, 4.6vw, 3.2rem);
