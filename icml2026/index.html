@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaptive Reasoning in LLMs: From Post-Training to Test-Time Learning · ICML 2026 Tutorial</title>
+  <meta name="description" content="Half-day tutorial (Adaptive Reasoning in LLMs: From Post-Training to Test-Time Learning) at ICML 2026 (Seoul, South Korea) on evaluating, improving, and extending reasoning in large language models." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Adaptive Reasoning in LLMs: From Post-Training to Test-Time Learning · ICML 2026 Tutorial" />
+  <meta property="og:description" content="A unified, hands-on tour of evaluation, inference-time strategies, post-training, and frontiers in LLM reasoning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:image:width" content="1254" />
+  <meta property="og:image:height" content="1254" />
+  <meta property="og:image:alt" content="Current Advances in LLM Reasoning tutorial logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="/assets/logo.png" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <script>
+    // Apply stored theme before first paint to prevent flash.
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="/" class="nav-brand">LLM Reasoning Tutorial</a>
+      <div class="nav-right">
+        <ul id="nav-menu" class="nav-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#outline">Outline</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#materials">Materials</a></li>
+          <li><a href="#citation">Citation</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="venue-badge venue-badge--green"><strong>ICML 2026</strong> · Seoul, South Korea · 5 July 2026</p>
+      <h1>Adaptive Reasoning in LLMs: <span class="accent">From Post-Training to Test-Time Learning</span></h1>
+      <p class="tagline">How LLMs learn to reason adaptively, from post-training methods to test-time learning that scales compute where it matters.</p>
+    </section>
+
+    <section id="overview" class="section">
+      <h2>Overview</h2>
+      <p>
+        Reasoning in Large Language Models (LLMs) is increasingly understood not as a single forward
+        pass but as an <strong>adaptive control loop</strong>, a process that decides how much to
+        think, when to act, and how to revise. This tutorial traces that idea from classical search
+        in AI through Chain-of-Thought prompting, building a shared vocabulary for reasoning as
+        adaptation.
+      </p>
+      <p>
+        We then examine three practical mechanisms that make this loop adaptive:
+        <strong>post-training</strong> as offline adaptation, <strong>test-time training</strong> and
+        continual adaptation during inference, and <strong>agentic reasoning</strong> that adapts
+        through external actions such as tools and environments.
+      </p>
+      <p>
+        Finally, we turn critical, looking at where adaptive reasoning fails and why, the open
+        challenges in evaluating it, and the open problems that define the road ahead. The tutorial
+        is aimed at researchers and practitioners who want a structured, current view of how LLMs
+        learn to reason adaptively.
+      </p>
+    </section>
+
+    <section id="outline" class="section">
+      <h2>Outline</h2>
+
+      <ol class="outline">
+        <li class="outline-part">
+          <div class="outline-head">
+            <span class="outline-num">Part 1</span>
+            <h3>Foundations of Adaptive Reasoning</h3>
+            <span class="outline-meta">13:30–14:05 · 35 min</span>
+          </div>
+          <p>Why reasoning benefits from adaptation, and the vocabulary we use to describe it.</p>
+
+          <div class="outline-sub">
+            <h4>1.1 Motivation: why static reasoning fails <span class="outline-meta">13:30–13:40 · 10 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora</p>
+            <p>Why static prompting is often insufficient for complex, long-horizon reasoning, and when adaptive control helps or breaks down. Motivating settings include long-horizon reasoning, robustness under distribution shift, and interaction with external tools and environments.</p>
+          </div>
+
+          <div class="outline-sub">
+            <h4>1.2 Concepts: reasoning as a control loop <span class="outline-meta">13:40–13:55 · 15 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora</p>
+            <p>Feedback, state, and adaptation as a unifying view across three strands of progress that have advanced in parallel, often with different assumptions, objectives, and evaluation practices: post-training refinement, test-time learning, and agentic inference. We ask what is fundamentally driving the gains, how the approaches relate, and where their limits lie.</p>
+          </div>
+
+          <div class="outline-sub">
+            <h4>1.3 Case study: adaptive reasoning patterns <span class="outline-meta">13:55–14:05 · 10 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora, with input from Vishrav Chaudhary</p>
+            <p>Adaptive reasoning patterns across tasks and settings, with take-home examples.</p>
+          </div>
+        </li>
+
+        <li class="outline-part">
+          <div class="outline-head">
+            <span class="outline-num">Part 2</span>
+            <h3>Control Mechanisms in Practice</h3>
+            <span class="outline-meta">14:05–15:05 · 45 min</span>
+          </div>
+          <p>Three practical mechanisms for adapting the reasoning control loop, looking at how adaptation operates at training and inference time and what feedback signals enable or hinder effective reasoning control.</p>
+
+          <div class="outline-sub">
+            <h4>2.1 Post-training refinement as offline adaptation <span class="outline-meta">14:05–14:20 · 15 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Vishrav Chaudhary</p>
+            <p>Shaping the model's reasoning behaviour offline, before deployment.</p>
+          </div>
+
+          <div class="outline-sub">
+            <h4>2.2 Test-time training &amp; continual adaptation <span class="outline-meta">14:20–14:35 · 15 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Vishrav Chaudhary</p>
+            <p>Adapting the model on the fly, with continual adaptation during inference.</p>
+          </div>
+
+          <div class="outline-break">☕ Break / Q&amp;A · 14:35–14:50 · 15 min</div>
+
+          <div class="outline-sub">
+            <h4>2.3 Agentic reasoning: coordination, delegation &amp; control <span class="outline-meta">14:50–15:05 · 15 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora</p>
+            <p>Adaptation through external action: coordination, delegation, and control across agentic systems.</p>
+          </div>
+        </li>
+
+        <li class="outline-part">
+          <div class="outline-head">
+            <span class="outline-num">Part 3</span>
+            <h3>Failures, Evaluation, and Open Problems</h3>
+            <span class="outline-meta">15:05–15:45 · 40 min</span>
+          </div>
+          <p>Where adaptive reasoning breaks down, how to evaluate it, and what remains open.</p>
+
+          <div class="outline-sub">
+            <h4>3.1 Credit assignment, instability &amp; agent failure modes <span class="outline-meta">15:05–15:20 · 15 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Vishrav Chaudhary</p>
+            <p>A critical discussion of how adaptive and agentic systems fail: instability under continual adaptation, challenges in credit assignment, and mismatches between optimization signals and reasoning quality.</p>
+          </div>
+
+          <div class="outline-sub">
+            <h4>3.2 Evaluating adaptive reasoning beyond accuracy <span class="outline-meta">15:20–15:30 · 10 min</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora</p>
+            <p>A critical discussion of evaluation challenges, and open questions in evaluation and deployment as adaptive reasoning systems approach the limits of existing benchmarks.</p>
+          </div>
+
+          <div class="outline-sub">
+            <h4>3.3 Open challenges &amp; future directions <span class="outline-meta">15:30–15:45 · 15 min · Q&amp;A</span></h4>
+            <p class="outline-leads"><span class="label">Leads:</span> Akhil Arora &amp; Vishrav Chaudhary</p>
+            <p>Closing discussion of open research directions, including verification and world-model approaches, followed by open Q&amp;A.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="speakers" class="section">
+      <h2>Speakers</h2>
+
+      <ul class="speakers">
+        <li class="speaker">
+          <img class="speaker-photo" src="/photos/akhil.jpg" alt="Akhil Arora" width="104" height="104" loading="lazy" />
+          <div class="speaker-body">
+            <h3>Akhil Arora</h3>
+            <p class="affil">Aarhus University</p>
+          </div>
+        </li>
+        <li class="speaker">
+          <img class="speaker-photo" src="/photos/vishrav.jpeg" alt="Vishrav Chaudhary" width="104" height="104" loading="lazy" />
+          <div class="speaker-body">
+            <h3>Vishrav Chaudhary</h3>
+            <p class="affil">Meta Superintelligence Labs</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="materials" class="section">
+      <h2>Materials</h2>
+      <ul class="materials">
+        <li><strong>Slides</strong>: coming soon</li>
+        <li><strong>Hands-on</strong>: <a href="https://github.com/au-clan/llmreasoning_materials/blob/main/notebook_ICML.ipynb">Jupyter Notebook</a></li>
+        <li><strong>Q&amp;A</strong>: <a href="https://github.com/llmreasoning/llmreasoning.github.io/discussions">GitHub Discussions</a></li>
+      </ul>
+    </section>
+
+    <section id="citation" class="section">
+      <h2>Citation</h2>
+      <pre class="bibtex"><code>@inproceedings{arora2026adaptive-icml,
+  title     = {Adaptive Reasoning in LLMs: From Post-Training to Test-Time Learning},
+  author    = {Arora, Akhil and Chaudhary, Vishrav},
+  booktitle = {Tutorials at the 43rd International Conference on Machine Learning (ICML)},
+  year      = {2026}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Contact: <a href="mailto:akhil.arora@cs.au.dk">akhil.arora@cs.au.dk</a>
+    </p>
+    <p class="fine">&copy; 2026 The Tutorial Authors.</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle?.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('open');
+    });
+    menu?.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+      }
+    });
+
+    // Theme toggle: cycles between explicit light and dark.
+    // First click flips away from the effective theme (which may have been system-driven).
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle?.addEventListener('click', () => {
+      const root = document.documentElement;
+      const stored = root.getAttribute('data-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const effective = stored || (prefersDark ? 'dark' : 'light');
+      const next = effective === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>

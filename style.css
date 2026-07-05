@@ -254,6 +254,21 @@ p { margin: 0 0 1em; }
 :root:not([data-theme="light"]) .venue-badge--alt {
   --alt-accent: #eebf9d;
 }
+.venue-badge--green {
+  --alt-accent: #2f6b4f;
+  background: color-mix(in srgb, var(--alt-accent) 10%, transparent);
+  color: var(--alt-accent);
+  border-color: color-mix(in srgb, var(--alt-accent) 22%, transparent);
+}
+:root[data-theme="dark"] .venue-badge--green,
+:root:not([data-theme="light"]) .venue-badge--green {
+  --alt-accent: #8fd6ae;
+}
+.venue-badge--muted {
+  background: var(--bg-soft);
+  color: var(--ink-muted);
+  border-color: var(--border);
+}
 .hero h1 {
   font-size: clamp(2.1rem, 4.6vw, 3.2rem);
   margin: 0 0 16px;
@@ -424,6 +439,74 @@ p { margin: 0 0 1em; }
 }
 .site-footer a { color: var(--ink-soft); }
 .site-footer .fine { margin-top: 6px; color: var(--ink-muted); font-size: 13px; }
+
+/* --- Venue cards (landing hub) --- */
+.venues {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.venue-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  background: var(--bg-soft);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.venue-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+.venue-main { flex: 1 1 260px; }
+.venue-card .venue-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  letter-spacing: -0.015em;
+  margin: 0 0 2px;
+}
+.venue-card .venue-title {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.venue-meta { text-align: right; flex: 0 0 auto; }
+.venue-card .venue-where { color: var(--ink-soft); font-size: 0.95rem; margin: 0; }
+.venue-card .venue-when {
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.venue-card .venue-cta {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .venue-meta { text-align: left; }
+}
+
+/* --- Cross-venue note (conference pages) --- */
+.crosslink {
+  margin: 20px 0 0;
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+.crosslink a { color: var(--ink-soft); }
 
 /* --- Selection --- */
 ::selection { background: var(--accent-soft); color: var(--accent); }
