@@ -1,15 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting…</title>
-  <link rel="canonical" href="/ijcai2026/">
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0; url=/ijcai2026/">
-  <script>window.location.replace("/ijcai2026/");</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Current Advances in LLM Reasoning — Tutorial</title>
+  <meta name="description" content="A half-day tutorial on evaluating, improving, and extending reasoning in large language models. Presented at IJCAI 2026, ICML 2026 and ACL 2026." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Current Advances in LLM Reasoning — Tutorial" />
+  <meta property="og:description" content="A unified, hands-on tour of evaluation, inference-time strategies, post-training, and frontiers in LLM reasoning. At IJCAI 2026, ICML 2026 and ACL 2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/logo.png" />
+  <meta property="og:image:width" content="1254" />
+  <meta property="og:image:height" content="1254" />
+  <meta property="og:image:alt" content="Current Advances in LLM Reasoning — tutorial logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="/assets/logo.png" />
+
+  <link rel="stylesheet" href="/style.css" />
+  <script>
+    // Apply stored theme before first paint to prevent flash.
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <p>This page has moved to <a href="/ijcai2026/">/ijcai2026/</a>.</p>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="#top" class="nav-brand">LLM Reasoning Tutorial</a>
+      <div class="nav-right">
+        <ul id="nav-menu" class="nav-links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#venues">Venues</a></li>
+          <li><a href="#discussion">Discussion</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="venue-badge venue-badge--alt"><strong>IJCAI 2026</strong> · Bremen</p>
+      <p class="venue-badge venue-badge--green"><strong>ICML 2026</strong> · Seoul</p>
+      <p class="venue-badge"><strong>ACL 2026</strong> · San Diego</p>
+      <h1>Current Advances in <span class="accent">LLM Reasoning</span></h1>
+      <p class="tagline">A unified, hands-on tour of how well LLMs reason, how to make them reason better, and where the field is heading next. Presented as a half-day tutorial at three venues in 2026.</p>
+    </section>
+
+    <section id="overview" class="section">
+      <h2>Overview</h2>
+      <p>
+        As Large Language Models (LLMs) increasingly tackle reasoning-heavy tasks, from mathematics
+        to commonsense to multilingual understanding, researchers face three pressing questions:
+        <em>How well do models reason? How can we make them reason better? And what are the next
+        frontiers in LLM reasoning?</em>
+      </p>
+      <p>
+        This tutorial answers these questions through a unified view of LLM reasoning. We explore
+        comprehensive evaluation strategies to assess the reasoning abilities of models and discuss two families of methods that
+        improve reasoning: <strong>advanced inference-time methods</strong> and <strong>post-training methods</strong>.
+      </p>
+      <p>
+        The tutorial is designed for both researchers and practitioners seeking actionable insight
+        into LLM reasoning.
+      </p>
+    </section>
+
+    <section id="venues" class="section">
+      <h2>Venues</h2>
+      <p class="section-intro">
+        The tutorial runs at three venues in 2026.
+      </p>
+      <ul class="venues">
+        <li>
+          <a class="venue-card" href="/ijcai2026/">
+            <div class="venue-main">
+              <p class="venue-name">IJCAI 2026</p>
+              <p class="venue-title">Current Advances in LLM Reasoning</p>
+            </div>
+            <div class="venue-meta">
+              <p class="venue-where">Bremen, Germany</p>
+              <p class="venue-when">17 August 2026</p>
+            </div>
+            <span class="venue-cta">View tutorial page →</span>
+          </a>
+        </li>
+        <li>
+          <a class="venue-card" href="/icml2026/">
+            <div class="venue-main">
+              <p class="venue-name">ICML 2026</p>
+              <p class="venue-title">Adaptive Reasoning in LLMs: From Post-Training to Test-Time Learning</p>
+            </div>
+            <div class="venue-meta">
+              <p class="venue-where">Seoul, South Korea</p>
+              <p class="venue-when">5 July 2026</p>
+            </div>
+            <span class="venue-cta">View tutorial page →</span>
+          </a>
+        </li>
+        <li>
+          <a class="venue-card" href="/acl2026/">
+            <div class="venue-main">
+              <p class="venue-name">ACL 2026</p>
+              <p class="venue-title">Current Advances in LLM Reasoning</p>
+            </div>
+            <div class="venue-meta">
+              <p class="venue-where">San Diego, USA</p>
+              <p class="venue-when">2 July 2026</p>
+            </div>
+            <span class="venue-cta">View tutorial page →</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="discussion" class="section">
+      <h2>Q&amp;A &amp; Discussion</h2>
+      <p>
+        Have a question about the tutorial, the slides, or the hands-on materials? Want to share
+        ideas or connect with others working on LLM reasoning? Join the conversation on
+        <a href="https://github.com/llmreasoning/llmreasoning.github.io/discussions">GitHub Discussions</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Contact: <a href="mailto:akhil.arora@cs.au.dk">akhil.arora@cs.au.dk</a> ·
+      <a href="mailto:niket.tandon@microsoft.com">niket.tandon@microsoft.com</a>
+    </p>
+    <p class="fine">&copy; 2026 The Tutorial Authors.</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle?.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('open');
+    });
+    menu?.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('open');
+      }
+    });
+
+    // Theme toggle: cycles between explicit light and dark.
+    // First click flips away from the effective theme (which may have been system-driven).
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle?.addEventListener('click', () => {
+      const root = document.documentElement;
+      const stored = root.getAttribute('data-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const effective = stored || (prefersDark ? 'dark' : 'light');
+      const next = effective === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
 </body>
 </html>
